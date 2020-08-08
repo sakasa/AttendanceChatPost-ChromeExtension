@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- reset css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <title>Option page.</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chat setting</h1>
+      <form>
+        <div class="row">
+          <div class="mb-3 col-sm-7">
+            <label for="webhook-url" class="h3 form-label">webhook url</label>
+            <input type="url" class="form-control" id="webhook-url" placeholder="https://your-chat/hooks/XXXXXXXXXX" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col-sm-3">
+            <label for="channel" class="h3 form-label">#channel</label>
+            <input type="text" class="form-control" id="channel" placeholder="off-topic">
+            <div id="channelHelp" class="form-text">Webhook default value or input value.</div>
+          </div>
+          <div class="mb-3 col-sm-3">
+            <label for="username" class="h3 form-label">@username</label>
+            <input type="text" class="form-control" id="username" placeholder="username">
+            <div id="usernameHelp" class="form-text">Webhook default value or input value.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col-sm-2">
+            <button type="button" class="btn btn-primary" id="config-set">Set</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="options.js"></script>
+</html>
