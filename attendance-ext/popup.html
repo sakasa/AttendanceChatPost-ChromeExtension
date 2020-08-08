@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- reset css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <title>Popup page.</title>
+  </head>
+  <body>
+    <div class="container" style="width: 400px;">
+      <h1>Chat setting</h1>
+      <div class="row">
+        <div class="mb-3 col-sm-2">
+          <h3>webhook url</h3>
+          <p class="font-monospace text-success text-break" id="webhook-url">...</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-sm-2">
+          <h3>#channel</h3>
+          <p class="font-monospace text-success text-break" id="channel">...</p>
+        </div>
+        <div class="mb-3 col-sm-2">
+          <h3>@username</h3>
+          <p class="font-monospace text-success text-break" id="username">...</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-sm-2">
+          <a href="options.html" target="_options">change setting</a>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="popup.js"></script>
+</html>
