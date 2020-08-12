@@ -2,17 +2,17 @@
 
 const webhookElem = document.getElementById('webhook-url');
 chrome.storage.local.get(['webhook'], function(data) {
-  webhookElem.value = data.webhook;
+  webhookElem.value = data.webhook ?? "";
 });
 
 const channelElem = document.getElementById('channel');
 chrome.storage.local.get(['channel'], function(data) {
-  channelElem.value = data.channel;
+  channelElem.value = data.channel ?? "";
 });
 
 const usernameElem = document.getElementById('username');
 chrome.storage.local.get(['username'], function(data) {
-  usernameElem.value = data.username;
+  usernameElem.value = data.username ?? "";
 });
 
 const buttonClick = function(){
