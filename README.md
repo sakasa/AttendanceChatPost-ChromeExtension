@@ -59,3 +59,7 @@ Chrome拡張機能のオプションページとポップアップページのcs
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 ```
 バージョンがAlphaなので突然画面が崩れたりするかもしれません。
+
+## Blog
+https://note.com/ppiicckkllees/n/n97674a7bf2a1
+
