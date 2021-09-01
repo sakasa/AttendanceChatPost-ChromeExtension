@@ -1,17 +1,15 @@
 {
     "name": "Kintai Post with Moneyforward Attendance",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "「マネーフォワード クラウド勤怠」の打刻に合わせて、設定したチャットに投稿を行います。チャットの設定は拡張機能のオプションページで行ってください。",
     "permissions": [
-        "activeTab",
         "declarativeContent",
         "storage"
     ],
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "service_worker": "background.js"
     },
-    "page_action": {
+    "action": {
         "default_popup": "popup.html",
         "default_icon": {
           "16": "images/attendance-ext.png",
@@ -33,5 +31,5 @@
       "48": "images/attendance-ext.png",
       "128": "images/attendance-ext.png"
     },
-    "manifest_version": 2
+    "manifest_version": 3
 }
