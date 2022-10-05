@@ -1,29 +1,35 @@
 const datetime = function(){
-    const dateStr = document.getElementsByClassName('attendance-card-time-recorder-date')[0].innerText;
-    const timeStr = document.getElementsByClassName('attendance-card-time-recorder-time')[0].innerText;
+    const statusContainer = document.getElementsByClassName('status-container')[0];
+    const dateStr = statusContainer.firstChild.firstChild.firstChild.innerText;
+    const timeStr = statusContainer.lastChild.firstChild.firstChild.innerText;
     return '[' +  dateStr + ' ' + timeStr + ']';
 };
-console.log(datetime());
+// console.log(datetime());
 
-const user = document.getElementsByClassName("attendance-header-user-name")[0].firstChild.innerText.split(" ")[0];
-console.log(user);
+let userElem = document.getElementsByClassName("attendance-header-user-name")[0];
+if (userElem && userElem.hasChildNodes()) {
+    userElem = userElem.firstChild;
+} else {
+    userElem = document.getElementsByClassName("attendance-mobile-header-user-name")[0];
+}
+const user = userElem.innerText.split(" ")[0];
+// console.log(user);
 
 let chatConf = {};
 const load = function(){
-    chrome.storage.local.get(['webhook'], function(data) {
-        chatConf.webhook = data.webhook;
-    });
-    chrome.storage.local.get(['channel'], function(data) {
-        chatConf.channel = data.channel;
-    });
-    chrome.storage.local.get(['username'], function(data) {
-        chatConf.username = data.username;
+    chrome.storage.local.get(['chatConfig'], function(data) {
+        if (data.chatConfig) {
+            chatConf.webhook = data.chatConfig.webhook;
+            chatConf.channel = data.chatConfig.channel;
+            chatConf.username = data.chatConfig.username;
+        }
     });
 };
 load();
+// console.log(chatConf);
 
 function dataJson(text){
-    console.log(text);
+    // console.log(text);
     let ret = {
         "text": user + " - " + datetime() + " " + text,
         "username": (chatConf.username || null) ?? "kintai-bot"
@@ -31,12 +37,12 @@ function dataJson(text){
     if(chatConf.channel) {
         ret.channel = chatConf.channel;
     }
-    console.log(ret);
+    // console.log(ret);
     return ret;
 }
 
 function postChat(data){
-    console.log(data);
+    // console.log(data);
     fetch(chatConf.webhook, {
         method: "POST",
         mode: "no-cors",
@@ -45,33 +51,34 @@ function postChat(data){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    // })
-    // .then(res => res.json())
-    // .then(result => {
-    //     console.log(result);
-    // }).catch((e) => {
-    //     console.error(e);
+        // })
+        // .then(res => res.json())
+        // .then(result => {
+        //     console.log(result);
+        // }).catch((e) => {
+        //     console.error(e);
     });
 }
 
-const timeStampButtons = document.getElementsByClassName('attendance-card-time-stamp-button');
+const timeStampButtons = document.getElementsByClassName('time-stamp-button');
 for(let i=0;i<timeStampButtons.length; i++){
     const element = timeStampButtons[i];
     element.addEventListener('click', function(evt){
-        let data = dataJson(element.innerText);
+        const data = dataJson(element.innerText);
+        // alert(data);
         postChat(data);
     });
 }
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (let key in changes) {
-      let storageChange = changes[key];
-      console.log('Storage key "%s" in namespace "%s" changed. ' +
-                  'Old value was "%s", new value is "%s".',
-                  key,
-                  namespace,
-                  storageChange.oldValue,
-                  storageChange.newValue);
+        const storageChange = changes[key];
+        console.log('Storage key "%s" in namespace "%s" changed. ' +
+            'Old value was "%s", new value is "%s".',
+            key,
+            namespace,
+            storageChange.oldValue,
+            storageChange.newValue);
     }
     load();
 });
