@@ -12,7 +12,8 @@ if (userElem && userElem.hasChildNodes()) {
 } else {
     userElem = document.getElementsByClassName("attendance-mobile-header-user-name")[0];
 }
-const user = userElem.innerText.split(" ")[0];
+const re = /^(.+?)さん$/
+const user = re.exec(userElem.innerText)[1];
 // console.log(user);
 
 let chatConf = {};
