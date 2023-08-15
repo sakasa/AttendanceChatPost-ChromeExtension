@@ -1,23 +1,7 @@
-const datetime = function(){
-    const statusContainer = document.getElementsByClassName('status-container')[0];
-    const dateStr = statusContainer.firstChild.firstChild.firstChild.innerText;
-    const timeStr = statusContainer.lastChild.firstChild.firstChild.innerText;
-    return '[' +  dateStr + ' ' + timeStr + ']';
-};
-// console.log(datetime());
-
-let userElem = document.getElementsByClassName("attendance-header-user-name")[0];
-if (userElem && userElem.hasChildNodes()) {
-    userElem = userElem.firstChild;
-} else {
-    userElem = document.getElementsByClassName("attendance-mobile-header-user-name")[0];
-}
-const re = /^(.+?)さん$/
-const user = re.exec(userElem.innerText)[1];
-// console.log(user);
-
+let user = '';
 let chatConf = {};
-const load = function(){
+
+function loadChatConf(){
     chrome.storage.local.get(['chatConfig'], function(data) {
         if (data.chatConfig) {
             chatConf.webhook = data.chatConfig.webhook;
@@ -26,13 +10,51 @@ const load = function(){
         }
     });
 };
-load();
+loadChatConf();
 // console.log(chatConf);
+
+function getUserText() {
+    // console.log('getUserText')
+    let userElem = document.getElementsByClassName("attendance-header-user-name")[0];
+    userElem = userElem||document.getElementsByClassName("attendance-mobile-header-user-name")[0];
+    // console.log(userElem);
+    
+    let userName = '';
+    if (userElem && userElem.hasChildNodes()) {
+        if (userElem.childElementCount == 1) {
+            userName = userElem.firstChild.innerText;
+        } else {
+            [...userElem.childNodes].forEach(function(element) {
+                if (!element.hasChildNodes()) {
+                    userName = element.data;
+                } else if (element.innerText.endsWith('さん')) {
+                    userName = element.innerText;
+                }
+            });
+        }
+    }
+    // console.log(userName);
+    
+    const re = /^(.+?)さん$/
+    user = re.exec(userName)[1];
+    // console.log(user);
+    return user;
+}
+
+function getDateText() {
+    // console.log('getDateText')
+    const statusContainer = document.getElementsByClassName('status-container')[0];
+    const dateStr = statusContainer.firstChild.firstChild.firstChild.innerText;
+    const timeStr = statusContainer.lastChild.firstChild.firstChild.innerText;
+    const datetime = '[' +  dateStr + ' ' + timeStr + ']';
+    // console.log(datetime);
+    return datetime;
+}
 
 function dataJson(text){
     // console.log(text);
     let ret = {
-        "text": user + " - " + datetime() + " " + text,
+        "text" : `${user||getUserText()} - ${getDateText()} ${text}`,
         "username": (chatConf.username || null) ?? "kintai-bot"
     };
     if(chatConf.channel) {
@@ -81,5 +103,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
             storageChange.oldValue,
             storageChange.newValue);
     }
-    load();
+    loadChatConf();
 });
+
+// document.addEventListener('click', function(e) {
+//     console.log(e);
+// })
