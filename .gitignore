@@ -1,2 +1,4 @@
 # Git Ignore
 tmp/
+arc/
+*.zip
