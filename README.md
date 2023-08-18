@@ -6,7 +6,7 @@ Chrome extension for attendance chat post with `https://biz.moneyforward.com/att
 [マネーフォワードクラウド勤怠](https://biz.moneyforward.com/attendance) のホーム画面にある出勤・退勤等の打刻のアクションでチャットツールに投稿を行うGoogleChrome拡張機能です。
 
 以下の環境で確認しています。
-- [Google Chrome] バージョン: 84.0.4147.105
+- [Google Chrome] バージョン: 84.0.4147.105〜
 
 
 ## Install
@@ -45,7 +45,7 @@ pageUrl: {
 ```json
 "content_scripts": [
   {
-    "matches": ["https://attendance.moneyforward.com/my_page"],
+    "matches": ["https://*.moneyforward.com/*"],
     "js": ["contentScript.js"]
   }
 ],
@@ -53,13 +53,7 @@ pageUrl: {
 
 
 ## その他
-Chrome拡張機能のオプションページとポップアップページのcssに [Bootstrap5](https://v5.getbootstrap.jp/docs/5.0/migration/) を使っています。
-```html
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-```
-バージョンがAlphaなので突然画面が崩れたりするかもしれません。
+...
 
 ## Blog
 https://note.com/ppiicckkllees/n/n97674a7bf2a1
-
