@@ -1,6 +1,6 @@
 const sleep = waitTime => new Promise( resolve => setTimeout(resolve, waitTime) );
 
-let user = '';
+let mfckExtUser = '';
 let chatConf = {};
 
 function loadChatConf(){
@@ -12,6 +12,10 @@ function loadChatConf(){
         }
     });
 };
+
+function messageFormat(userText, dateText, text) {
+    return `${userText} - \`${dateText}\` ${text}`
+}
 
 function getUserText() {
     // console.log('getUserText')
@@ -36,9 +40,10 @@ function getUserText() {
     // console.log(userName);
     
     const re = /^(.+?)さん$/
-    user = re.exec(userName)[1];
+    mfckExtUser = re.exec(userName)[1];
+    mfckExtUser = mfckExtUser.replaceAll(/[ 　]/g, ' ');
     // console.log(user);
-    return user;
+    return mfckExtUser;
 }
 function getDateText() {
     // console.log('getDateText')
@@ -52,16 +57,17 @@ function getDateText() {
 }
 function getMessageText(text) {
     // console.log(text);
-    return `${user||getUserText()} - ${getDateText()} ${text}`
+    return messageFormat(mfckExtUser||getUserText(), getDateText(), text)
 }
 
 /**
  * for `mypage.moneyforward.com`
  */
 function getUserText2() {
-    const ret = document.getElementById('root').firstChild.firstChild.lastChild.lastChild.firstChild.firstChild.innerText;
+    mfckExtUser = document.getElementById('root').firstChild.firstChild.lastChild.lastChild.firstChild.firstChild.innerText;
+    mfckExtUser = mfckExtUser.replaceAll(/[ 　]/g, ' ');
     // console.log(ret);
-    return ret;
+    return mfckExtUser;
 }
 /**
  * for `mypage.moneyforward.com`
@@ -85,7 +91,7 @@ function getDateText2() {
  */
 function getMessageText2(text) {
     // console.log(text);
-    return `${user||getUserText2()} - ${getDateText2()} ${text}`
+    return messageFormat(mfckExtUser||getUserText2(), getDateText2(), text)
 }
 
 function dataJson(messageText){
