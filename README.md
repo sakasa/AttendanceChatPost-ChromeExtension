@@ -53,7 +53,7 @@ pageUrl: {
 
 
 ## その他
-...
+- v2.1はMarkdown形式の投稿対応です。（主にMattermost） この対応が不要な場合はv2.0を使ってください。
 
 ## Blog
 https://note.com/ppiicckkllees/n/n97674a7bf2a1
