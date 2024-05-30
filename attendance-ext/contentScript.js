@@ -26,7 +26,7 @@ function getUserText() {
     let userName = '';
     if (userElem && userElem.hasChildNodes()) {
         if (userElem.childElementCount == 1) {
-            userName = userElem.firstChild.innerText;
+            userName = userElem.firstElementChild.innerText;
         } else {
             [...userElem.childNodes].forEach(function(element) {
                 if (!element.hasChildNodes()) {
@@ -48,9 +48,9 @@ function getUserText() {
 function getDateText() {
     // console.log('getDateText')
     const statusContainer = document.getElementsByClassName('status-container')[0];
-    const dateStr = statusContainer.firstChild.firstChild.firstChild.innerText.replaceAll(' ', '');
-    const timeStr1 = statusContainer.lastChild.firstChild.firstChild.innerText;
-    const timeStr2 = statusContainer.lastChild.firstChild.lastChild.innerText;
+    const dateStr = statusContainer.firstElementChild.firstElementChild.firstElementChild.innerText.replaceAll(' ', '');
+    const timeStr1 = statusContainer.lastElementChild.firstElementChild.firstElementChild.innerText;
+    const timeStr2 = statusContainer.lastElementChild.firstElementChild.lastElementChild.innerText;
     const ret = `[${dateStr} ${timeStr1}:${timeStr2}]`;
     // console.log(ret);
     return ret;
@@ -64,7 +64,7 @@ function getMessageText(text) {
  * for `mypage.moneyforward.com`
  */
 function getUserText2() {
-    mfckExtUser = document.getElementById('root').firstChild.firstChild.lastChild.lastChild.firstChild.firstChild.innerText;
+    mfckExtUser = document.getElementById('root').firstElementChild.firstElementChild.lastElementChild.lastElementChild.firstElementChild.firstElementChild.innerText;
     mfckExtUser = mfckExtUser.replaceAll(/[ 　]/g, ' ');
     // console.log(ret);
     return mfckExtUser;
@@ -77,9 +77,9 @@ function getDateText2() {
     document.getElementsByTagName('attendance-time-record-container')[0].shadowRoot.childNodes.forEach(function(element) {
         // console.log(element.tagName);
         if (element.tagName === 'SECTION') {
-            const dateStr = element.getElementsByClassName('status-container')[0].firstChild.getElementsByTagName('section')[0].innerText.replaceAll(' ', '');
-            const timeStr1 = element.getElementsByClassName('status-container')[0].lastChild.firstChild.firstChild.innerText;
-            const timeStr2 = element.getElementsByClassName('status-container')[0].lastChild.firstChild.lastChild.innerText;
+            const dateStr = element.getElementsByClassName('status-container')[0].firstElementChild.getElementsByTagName('section')[0].innerText.replaceAll(' ', '');
+            const timeStr1 = element.getElementsByClassName('status-container')[0].lastElementChild.firstElementChild.firstElementChild.innerText;
+            const timeStr2 = element.getElementsByClassName('status-container')[0].lastElementChild.firstElementChild.lastElementChild.innerText;
             ret = `[${dateStr} ${timeStr1}:${timeStr2}]`;
         }
     });
