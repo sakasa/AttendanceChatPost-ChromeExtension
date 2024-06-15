@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Kintai Post with Moneyforward Attendance",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "「マネーフォワード クラウド勤怠」の打刻に合わせて、設定したチャットに投稿を行います。チャットの設定は拡張機能のオプションページで行ってください。",
   "permissions": [
     "declarativeContent",
