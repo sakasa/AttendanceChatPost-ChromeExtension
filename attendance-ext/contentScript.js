@@ -17,10 +17,6 @@ function messageFormat(userText, dateText, text) {
     return `${userText} - \`${dateText}\` ${text}`
 }
 
-function lastMessageFormat(userText, chats) {
-    return `${userText}さんが今日の勤務報告を送信しました。\n\n ${chats.join('\n')}`
-}
-
 function getUserText() {
     // console.log('getUserText')
     let userElem = document.getElementsByClassName("attendance-header-user-name")[0];
@@ -59,46 +55,9 @@ function getDateText() {
     // console.log(ret);
     return ret;
 }
-function getAllDateText() {
-    let chats = ['*日付*'];
-    const historyListGroups = document.getElementsByClassName('history-list-group');
-    let historyListGroup = historyListGroups[0];
-
-    // historyListGroup とその子要素が存在するかをチェック
-    if (historyListGroup && historyListGroup.firstElementChild && historyListGroup.firstElementChild.firstElementChild) {
-        const dateStr = historyListGroup.firstElementChild.firstElementChild.innerText;
-        chats.push(`${dateStr}`);
-        chats.push('\n*勤怠*');
-
-        const addHistory = (group) => {
-            if (group && group.lastElementChild && group.lastElementChild.children) {
-                Array.from(group.lastElementChild.children).reverse().forEach(element => {
-                    if (element.firstElementChild && element.firstElementChild.firstElementChild && element.firstElementChild.lastElementChild) {
-                        chats.push(`${element.firstElementChild.firstElementChild.innerText} ${element.firstElementChild.lastElementChild.innerText}`);
-                    }
-                });
-            }
-        };
-
-        // 最初のhistoryListGroupから履歴を追加
-        addHistory(historyListGroup);
-        const beforeHistory = historyListGroups[1];
-        // 最初のhistoryListGroupに履歴がない場合、次の候補をチェック
-        if (chats.length === 3 && beforeHistory) {
-            addHistory(beforeHistory);
-            chats[1] = beforeHistory.firstElementChild.firstElementChild.innerText;
-        }
-    }
-
-    return chats;
-}
 function getMessageText(text) {
     // console.log(text);
     return messageFormat(mfckExtUser||getUserText(), getDateText(), text)
-}
-
-function getLastMessageText() {
-    return lastMessageFormat(mfckExtUser||getUserText(), getAllDateText())
 }
 
 /**
@@ -179,21 +138,18 @@ function chatPostByClick(messageText) {
 (async function() {
     /* load configration */
     loadChatConf();
+    // console.log(chatConf);
 
     /* event */
     const chatPostEventName = 'click';
+
     /*
      * for `attendance.moneyforward.com`
      */
     if (location.hostname === 'attendance.moneyforward.com' && location.pathname === '/my_page') {
         [...document.getElementsByClassName('time-stamp-button')].forEach(function(element) {
-            element.addEventListener(chatPostEventName, async function (e) {
-                if (element.innerText === '退勤') {
-                    await sleep(1000);
-                    chatPostByClick(getLastMessageText());
-                } else {
-                    chatPostByClick(getMessageText(element.innerText));
-                }
+            element.addEventListener(chatPostEventName, function(e) {
+                chatPostByClick(getMessageText(element.innerText));
             });
         });
     }
