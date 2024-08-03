@@ -22,7 +22,7 @@ function getUserText() {
     let userElem = document.getElementsByClassName("attendance-header-user-name")[0];
     userElem = userElem||document.getElementsByClassName("attendance-mobile-header-user-name")[0];
     // console.log(userElem);
-
+    
     let userName = '';
     if (userElem && userElem.hasChildNodes()) {
         if (userElem.childElementCount == 1) {
@@ -38,7 +38,7 @@ function getUserText() {
         }
     }
     // console.log(userName);
-
+    
     const re = /^(.+?)さん$/
     mfckExtUser = re.exec(userName)[1];
     mfckExtUser = mfckExtUser.replaceAll(/[ 　]/g, ' ');
