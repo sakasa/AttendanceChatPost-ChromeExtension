@@ -1,41 +1,40 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <title>Option page.</title>
-</head>
-<body>
-<div class="container">
-  <h1>Chat setting</h1>
-  <form>
-    <div class="row">
-      <div class="mb-3 col-sm-7">
-        <label for="webhook-url" class="h3 form-label">webhook url</label>
-        <input type="url" class="form-control" id="webhook-url" placeholder="https://your-chat/hooks/XXXXXXXXXX" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="mb-3 col-sm-3">
-        <label for="channel" class="h3 form-label">#channel</label>
-        <input type="text" class="form-control" id="channel" placeholder="off-topic">
-        <div id="channelHelp" class="form-text">Webhook default value or input value.</div>
-      </div>
-      <div class="mb-3 col-sm-3">
-        <label for="username" class="h3 form-label">@username</label>
-        <input type="text" class="form-control" id="username" placeholder="username">
-        <div id="usernameHelp" class="form-text">Webhook default value or input value.</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="mb-3 col-sm-2">
-        <button type="button" class="btn btn-primary" id="config-set">Set</button>
-      </div>
-    </div>
-  </form>
-</div>
-</body>
-<script src="options.js"></script>
-</html>
+<!DOCTYPE html>	<!DOCTYPE html>
+<html lang="ja">	<html lang="ja">
+  <head>	<head>
+    <meta charset="UTF-8">	  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">	  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->	  <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Option page.</title>	  <title>Option page.</title>
+  </head>	</head>
+  <body>	<body>
+    <div class="container">	<div class="container">
+      <h1>Chat setting</h1>	  <h1>Chat setting</h1>
+      <form>	  <form>
+        <div class="row">	    <div class="row">
+          <div class="mb-3 col-sm-7">	      <div class="mb-3 col-sm-7">
+            <label for="webhook-url" class="h3 form-label">webhook url</label>	        <label for="webhook-url" class="h3 form-label">webhook url</label>
+            <input type="url" class="form-control" id="webhook-url" placeholder="https://your-chat/hooks/XXXXXXXXXX" required>	        <input type="url" class="form-control" id="webhook-url" placeholder="https://your-chat/hooks/XXXXXXXXXX" required>
+          </div>	      </div>
+        </div>	
+        <div class="row">	
+          <div class="mb-3 col-sm-3">	
+            <label for="channel" class="h3 form-label">#channel</label>	
+            <input type="text" class="form-control" id="channel" placeholder="off-topic">	
+            <div id="channelHelp" class="form-text">Webhook default value or input value.</div>	
+          </div>	
+          <div class="mb-3 col-sm-3">	
+            <label for="username" class="h3 form-label">@username</label>	
+            <input type="text" class="form-control" id="username" placeholder="username">	
+            <div id="usernameHelp" class="form-text">Webhook default value or input value.</div>	
+          </div>	
+        </div>	
+        <div class="row">	
+          <div class="mb-3 col-sm-2">	
+            <button type="button" class="btn btn-primary" id="config-set">Set</button>	
+          </div>	
+        </div>	
+      </form>	
+    </div>	    </div>
+  </body>	    <div class="row">
+  <script src="options.js"></script>
